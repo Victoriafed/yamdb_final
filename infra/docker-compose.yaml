@@ -12,6 +12,7 @@ services:
       - yamdb_database:/var/lib/postgresql/data/
     env_file:
       - ./.env
+
   web:
     image: victoria33772/sp16_api_final:latest
     restart: always
