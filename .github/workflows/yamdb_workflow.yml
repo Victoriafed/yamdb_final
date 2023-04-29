@@ -54,6 +54,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            sudo docker pull victoria33772/yamdb_api:latest
             sudo docker-compose stop
             sudo docker-compose rm web
             touch .env
