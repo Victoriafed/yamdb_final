@@ -56,7 +56,7 @@ jobs:
           script: |
             sudo docker pull victoria33772/p16_api_final
             sudo docker stop $(sudo docker ps -a -q)
-            sudo docker run --rm -d -p 5000:5000 victoria33772/p16_api_final
+            sudo docker run --rm -d -p 5000:5000 victoria33772/sp16_api_final
 
   send_message:
     runs-on: ubuntu-latest
