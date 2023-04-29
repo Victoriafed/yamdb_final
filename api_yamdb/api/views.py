@@ -10,25 +10,16 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from reviews.models import Category, Genre, Review, Title
 from users.models import User
+
 from .filters import TittleFilter
 from .mixins import CustomMixinSet
-from .permissions import (
-    AdminSuperUserPermission,
-    IsAdminModeratorOwnerOrReadOnly,
-    OnlyAdmin
-)
-from .serializers import (
-    CategorySerializer,
-    CommentSerializer,
-    GenreSerializer,
-    ReviewSerializer,
-    SignupUserSerializer,
-    SimpleUser,
-    TitleModifySerializer,
-    TitleReadSerializer,
-    TokenSerializer,
-    UsersSerializer
-)
+from .permissions import (AdminSuperUserPermission,
+                          IsAdminModeratorOwnerOrReadOnly, OnlyAdmin)
+from .serializers import (CategorySerializer, CommentSerializer,
+                          GenreSerializer, ReviewSerializer,
+                          SignupUserSerializer, SimpleUser,
+                          TitleModifySerializer, TitleReadSerializer,
+                          TokenSerializer, UsersSerializer)
 from .utils import send_email
 
 
@@ -123,24 +114,22 @@ def signup_with_email(request):
                 email=serializer.validated_data['email']
             )
             return Response(serializer.data)
-        else:
-            if serializer.is_valid():
-                user = serializer.save()
-                send_email(user)
-                return Response(serializer.data)
-            else:
-                try:
-                    user = User.objects.get(
-                        username=request.data.get('username'),
-                        email=request.data.get('email')
-                    )
-                    send_email(user)
-                except User.DoesNotExist:
-                    return Response(
-                        serializer.errors,
-                        status=status.HTTP_400_BAD_REQUEST
-                    )
+        if serializer.is_valid():
+            user = serializer.save()
+            send_email(user)
             return Response(serializer.data)
+        try:
+            user = User.objects.get(
+                username=request.data.get('username'),
+                email=request.data.get('email')
+            )
+            send_email(user)
+        except User.DoesNotExist:
+            return Response(
+                serializer.errors,
+                status=status.HTTP_400_BAD_REQUEST
+            )
+    return Response(serializer.data)
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
