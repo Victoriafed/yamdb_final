@@ -7,7 +7,7 @@ volumes:
 
 services:
   db:
-    image: postgres:13.0-alpine
+    image: postgres:latest
     volumes:
       - yamdb_database:/var/lib/postgresql/data/
     env_file:
