@@ -54,6 +54,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/sp16_api_final:latest
             sudo docker-compose stop
             sudo docker-compose rm web
             touch .env
