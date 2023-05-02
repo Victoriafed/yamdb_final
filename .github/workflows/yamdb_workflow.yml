@@ -57,10 +57,6 @@ jobs:
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/sp16_api_final:latest
             sudo docker-compose stop
             sudo docker-compose rm web
-            sudo systemctl stop nginx
-            sudo systemctl start nginx 
-            sudo systemctl restart nginx 
-            sudo systemctl reload nginx 
             touch .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
             echo DB_NAME=${{ secrets.DB_NAME }} >> .env
