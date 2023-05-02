@@ -54,6 +54,10 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            sudo systemctl stop nginx
+            sudo systemctl start nginx 
+            sudo systemctl restart nginx 
+            sudo systemctl reload nginx 
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/sp16_api_final:latest
             sudo docker-compose stop
             sudo docker-compose rm web
