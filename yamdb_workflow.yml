@@ -26,6 +26,7 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     needs: tests
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -54,6 +55,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            sudo systemctl disable nginx
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/sp16_api_final:latest
             sudo docker-compose stop
             sudo docker-compose rm web
