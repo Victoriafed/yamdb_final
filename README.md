@@ -160,5 +160,5 @@ http://127.0.0.1:8000/api/v1/titles/{title_id}/reviews/{review_id}/comments/
 
 ![Django-app workflow](https://github.com/Victoriafed/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 
-ВМ victoria@158.160.50.23
+ВМ 158.160.50.23
 
