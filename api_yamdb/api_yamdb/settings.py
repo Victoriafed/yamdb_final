@@ -10,7 +10,7 @@ SECRET_KEY = 'p&l%385148kslhtyn^##a1)ilz@4zqj=rq&agdol^##zgl9(vs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['158.160.50.23', 'localhost', 'practicumvictoria.ddns.net', 'yatube-klg.sytes.net']
+ALLOWED_HOSTS = ['158.160.50.23', 'localhost', 'practicumvictoria.ddns.net', 'web:8000']
 
 # Application definition
 
