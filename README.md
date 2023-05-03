@@ -162,3 +162,4 @@ http://127.0.0.1:8000/api/v1/titles/{title_id}/reviews/{review_id}/comments/
 
 ВМ 158.160.50.23
 
+superuser name:admin ps:admin
