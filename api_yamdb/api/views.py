@@ -55,7 +55,9 @@ class UsersViewSet(viewsets.ModelViewSet):
 class GenreViewSet(CustomMixinSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
-    permission_classes = (AdminSuperUserPermission,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          AdminSuperUserPermission,
+                          )
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name',)
     lookup_field = 'slug'
@@ -64,7 +66,9 @@ class GenreViewSet(CustomMixinSet):
 class CategoryViewSet(CustomMixinSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = (AdminSuperUserPermission,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          AdminSuperUserPermission,
+                          )
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name',)
     lookup_field = 'slug'
@@ -74,7 +78,9 @@ class TitleViewSet(viewsets.ModelViewSet):
     queryset = Title.objects.annotate(
         rating=Avg('reviews__score')
     )
-    permission_classes = (AdminSuperUserPermission,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          AdminSuperUserPermission,
+                          )
     filter_backends = [DjangoFilterBackend]
     filterset_class = TittleFilter
 
