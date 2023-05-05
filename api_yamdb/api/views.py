@@ -64,7 +64,9 @@ class GenreViewSet(CustomMixinSet):
 class CategoryViewSet(CustomMixinSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsAdminModeratorOwnerOrReadOnly,
+                          )
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name',)
     lookup_field = 'slug'
